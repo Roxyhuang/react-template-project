@@ -2,17 +2,43 @@
   "name": "react-template-project",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=7",
+    "npm": ">=3.8"
+  },
   "dependencies": {
+    "antd": "^2.10.0",
+    "autoprefixer": "^6.7.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "cross-env": "^5.0.1",
+    "connect-history-api-fallback": "^1.3.0",
+    "express": "^4.13.3",
+    "precss": "^1.4.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-md5-hash": "^0.0.5",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "test": "node build/dev-server.js"
+  },
+  "theme": "./theme/theme.js"
 }
