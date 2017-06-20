@@ -10,15 +10,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodemodulesPath = path.resolve(__dirname, 'node_modules');
 const buildPath = path.resolve(__dirname, 'dist');
 
-const pathToReact = path.resolve(nodemodulesPath,'react/dist/react.min.js');
-const pathToReactDOM = path.resolve(nodemodulesPath,'react-dom/dist/react-dom.min.js');
+// const pathToReact = path.resolve(nodemodulesPath,'react/dist/react.min.js');
+// const pathToReactDOM = path.resolve(nodemodulesPath,'react-dom/dist/react-dom.min.js');
 //判断当前运行环境
 const nodeEnv = process.env.NODE_ENV || 'development';
 
 const config = {
   context: path.resolve(__dirname,"../src"),
   entry: {
-    index: ['entry.js'],
+    entry: './entry.js',
     vendors:['react','react-dom']
   },
   output: {
@@ -37,11 +37,11 @@ const config = {
     extensions: ['.js','.jsx','.scss','.css'],
     modules: [
       path.resolve(__dirname,'node_modules'),
-      path.join(__dirname, './src')
+      path.join(__dirname, '../src')
     ],
     alias: {
-      'react.js': pathToReact,
-      'react-dom.js': pathToReactDOM
+      // 'react.js': pathToReact,
+      // 'react-dom.js': pathToReactDOM
     }
   },
   module: {
