@@ -1,78 +1,105 @@
-const webpack = require('webpack');
-const fs = require('fs');
 const path = require('path');
-
 const autoprefixer = require('autoprefixer');
-const precss = require('precss');
-
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const nodemodulesPath = path.resolve(__dirname, 'node_modules');
-const buildPath = path.resolve(__dirname, 'dist');
+module.exports = {
+  // context: path.join(__dirname, './src'),
 
-const pathToReact = path.resolve(nodemodulesPath,'react/dist/react.min.js');
-const pathToReactDOM = path.resolve(nodemodulesPath,'react-dom/dist/react-dom.min.js');
-//判断当前运行环境
-const nodeEnv = process.env.NODE_ENV || 'development';
-
-const config = {
-  context: path.resolve(__dirname,"../../src"),
   entry: {
-    index: './index.js',
-    // vendors:['react','react-dom']
-  },
-  output: {
-    filename: '[name].[hash:8].js',
-    //输出的打包文件
-    path: buildPath,
-
-    publicPath: '/',
-    //如果修改成／assets/，那么访问路径为 localhost:8080/assets/index.html
-    //bundle路径为 /assets/bundle.js
-    // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
-    //chunkFilename: 'bundle.js'
-  },
-  devtool: 'inline-source-map',
-  resolve: {
-    extensions: ['.js','.jsx','.scss','.css'],
-    modules: [
-      path.resolve(__dirname,'node_modules'),
-      path.join(__dirname, '../../src')
+    app: [
+      'webpack-hot-middleware/client?reload=true',
+      './src/index.js',
     ],
-    alias: {
-      'react.js': pathToReact,
-      'react-dom.js': pathToReactDOM
-    }
+    vendors: [
+      'antd',
+      'classnames',
+      'jwt-decode',
+      'lodash',
+      'query-string',
+      'react',
+      'react-addons-transition-group',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'react-router-scroll',
+      'recharts',
+      'redux',
+      'redux-actions',
+      'redux-thunk',
+      'reselect',
+      'whatwg-fetch',
+    ],
   },
+
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].[hash].min.js',
+    publicPath: '/',
+    sourceMapFilename: '[name].[hash].js.map',
+    chunkFilename: '[id].[hash].min.js',
+  },
+
+  devtool: 'cheap-module-eval-source-map',
+
+  plugins: [
+    new ProgressBarPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'public/index.html',
+      inject: 'body',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendors', '[name].[hash].min.js'),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new ExtractTextPlugin('[name].css'),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
+    }),
+  ],
+
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.jsx?$/,
-        use: [ 'babel-loader', ],
-        exclude: path.resolve(__dirname,'node_modules'),
+        test: /\.css$/,
+        include: path.join(__dirname, 'src'),
+        loader: ExtractTextPlugin.extract('style-loader', '!css-loader!postcss-loader'),
       },
       {
-        test: /\.(css|scss)$/,
-        use: ['style-loader','css-loader?modules','sass-loader']
-      }
-    ]
+        test: /\.css$/,
+        exclude: path.join(__dirname, 'src'),
+        loader: 'style!css',
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader'),
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ['babel'],
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: 'url-loader?prefix=img/&limit=10000',
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        loader: 'url-loader?prefix=font/&limit=10000',
+      },
+    ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: '../public/index.html', //相对于path路径，待修改的html文件
-      template: '../public/index.html', //html模版路径 因为context已经配置所以不应该加上./src/
-      inject: true, //允许插件修改的内容
-      //chunks:['vendors','app'], //加载指定模块、否则加载所有模块
-      hash: false, //为静态资源生产hash
-      minify: { //压缩HTML文件
-        removeComments: false,
-        collapseWhitespace: false //删除空白符与换行符
-      }
 
-    }),
-    //new webpack.HotModuleReplacementPlugin()
-    //添加hot之后不要加这个插件、否则会报错Maximum call stack size exceeded
-  ]
+  postcss: [autoprefixer],
+
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
 };
-
-module.exports = config;
