@@ -25,6 +25,8 @@ app.use(require('webpack-hot-middleware')(compiler, {
   heartbeat: 1,
 }));
 
+app.use('/assets', express.static('../../public'));
+
 if (require.main === module) {
   const server = http.createServer(app);
   server.listen(3000,  () => {
