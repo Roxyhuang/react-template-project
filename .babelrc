@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
+    ["es2015"],
     "react",
     "stage-0"
   ],
@@ -9,7 +9,9 @@
       "import", [
         { "libraryName": "antd", "style": true },
         { "libraryName": "antd-mobile", "style": true }
-      ]
+      ],
+      "transform-decorators-legacy",
+      "transform-class-properties"
     ]
   ]
 }

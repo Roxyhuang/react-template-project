@@ -1,18 +1,33 @@
-const config = require('../../config.js');
+// Created by Neo_Huang
+
 const express = require('express');
-const webpack = require('webpack');
-const webpackConfig = require('../config/webpack.base.conf');
 const http = require('http');
+const webpack = require('webpack');
+const proxyMiddleware = require('http-proxy-middleware');
+const config = require('../../config.js');
+const webpackConfig = require('../config/webpack.dev.conf');
+
+
 const app = express();
 const compiler = webpack(webpackConfig);
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
-  publicPath: '/dist/',
+  publicPath: '/',
+  hot: true,
+  historyApiFallback: true,
+  inline: true,
+  progress: true,
   stats: {
     colors: true,
     chunks: false,
   },
 });
+
+// Set a Proxy Server
+app.use('/api', proxyMiddleware({
+  target: 'http://www.baidu.com ',
+  changeOrigin: true,
+}));
 
 app.use(require('connect-history-api-fallback')());
 
