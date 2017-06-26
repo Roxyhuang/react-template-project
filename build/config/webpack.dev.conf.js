@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -93,6 +93,7 @@ module.exports = {
         NODE_ENV: JSON.stringify('development')
       }
     }),
+    new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
       filename: '/dist/index.html',
       template: 'public/index.html',
