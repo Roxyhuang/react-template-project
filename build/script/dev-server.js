@@ -2,6 +2,7 @@
 
 const express = require('express');
 const http = require('http');
+const https = require('https');
 const webpack = require('webpack');
 const proxyMiddleware = require('http-proxy-middleware');
 const config = require('../../config.js');
@@ -25,7 +26,7 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
 
 // Set a Proxy Server
 app.use('/api', proxyMiddleware({
-  target: 'http://www.baidu.com ',
+  target: 'http://www.baidu.com',
   changeOrigin: true,
 }));
 
