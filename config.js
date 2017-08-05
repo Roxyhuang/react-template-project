@@ -6,10 +6,10 @@ module.exports = {
   SESSION_TOKEN_KEY: 'sessionToken',
   server: {
     production: {
-      url: 'https://api.pai.bigins.cn/',
+      url: '',
     },
     qa: {
-      url: 'https://qa.api.pai.bigins.cn/',
+      url: '',
     },
   },
 };
