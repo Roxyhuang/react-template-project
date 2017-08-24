@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import sty from './Product.styl';
+import sty from './Product.scss';
 class Product extends Component {
   render() {
     return (
-      <div className="sty.container">
+      <div className={sty.test}>
         test
       </div>
     );

@@ -64,6 +64,16 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        include: path.resolve(__dirname, 'src'),
+        loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]!sass-loader?sourceMap=true'
+      },
+      {
+        test: /\.scss$/,
+        exclude: path.resolve(__dirname, 'src'),
+        loader: 'style-loader!css-loader!sass-loader?sourceMap=true'
+      },
+      {
         test: /\.css$/,
         include: path.join(__dirname, 'src'),
         loader: ExtractTextPlugin.extract('style-loader', '!css-loader!postcss-loader'),
