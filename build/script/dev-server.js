@@ -1,13 +1,17 @@
 // Created by Neo_Huang
-
 const express = require('express');
 const http = require('http');
 const https = require('https');
 const webpack = require('webpack');
 const proxyMiddleware = require('http-proxy-middleware');
+const vhost = require('vhost');
 const config = require('../config/client.conf');
 const webpackConfig = require('../config/webpack.dev.conf');
+const checkVersions = require('./check-versions');
 
+// Check version for npm and node
+
+checkVersions();
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -41,6 +45,7 @@ app.use(require('webpack-hot-middleware')(compiler, {
   heartbeat: 1,
 }));
 
+app.use(vhost(config.server.qa.host, app));
 app.use('/assets', express.static('../../public'));
 
 if (require.main === module) {

@@ -7,9 +7,11 @@ module.exports = {
   server: {
     production: {
       url: '',
+      host:'',
     },
     qa: {
       url: '',
+      host:'local.neo.com',
     },
   },
 };
