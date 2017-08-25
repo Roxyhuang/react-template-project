@@ -100,10 +100,6 @@
       "transform-runtime"
     ]
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb"
-  },
   "scripts": {
     "dev": "node build/script/dev-server.js"
   },
