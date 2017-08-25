@@ -5,7 +5,7 @@ const http = require('http');
 const https = require('https');
 const webpack = require('webpack');
 const proxyMiddleware = require('http-proxy-middleware');
-const config = require('../../config.js');
+const config = require('../config/client.conf');
 const webpackConfig = require('../config/webpack.dev.conf');
 
 

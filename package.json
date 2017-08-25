@@ -48,6 +48,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.9.2",
     "body-parser": "^1.15.1",
+    "chalk": "^2.1.0",
+    "child_process": "^1.0.2",
     "connect-history-api-fallback": "^1.2.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
@@ -81,6 +83,7 @@
     "rimraf": "^2.5.2",
     "sass": "^0.5.0",
     "sass-loader": "^4.0.2",
+    "semver": "^5.4.1",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
@@ -101,7 +104,8 @@
     ]
   },
   "scripts": {
-    "dev": "node build/script/dev-server.js"
+    "dev": "node build/script/dev-server.js",
+    "check-version": "node build/script/check-versions.js"
   },
   "theme": "./theme/theme.js"
 }
