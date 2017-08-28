@@ -30,7 +30,7 @@ module.exports = {
     // "arrow-body-style": [0],
     // "react/prefer-stateless-function": [0],
     // "semi": [0],
-    // "global-require": [0],
+    // "product-require": [0],
     // "no-shadow": [0],
     // "no-useless-computed-key": [0],
     "no-underscore-dangle": [0],

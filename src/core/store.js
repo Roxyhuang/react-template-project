@@ -5,3 +5,8 @@ import thunk from 'redux-thunk';
 import detector from 'detector';
 
 import reducer from './reducers';
+import CONFIG from 'build/config/client.conf';
+
+const store = '';
+
+export default store;
