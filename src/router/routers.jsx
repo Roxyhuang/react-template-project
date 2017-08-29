@@ -3,4 +3,4 @@ import { applyRouterMiddleware, Router, IndexRedirect, Route, browserHistory, Re
 import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 
-import store from './store';
+import store from '../core/store';

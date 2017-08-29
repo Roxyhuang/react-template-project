@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     app: [
       'webpack-hot-middleware/client?reload=true',
-      './src/index.js',
+      './src/main.jsx',
     ],
     vendors: [
       'antd',

@@ -8,7 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
 import store from '../src/core/store';
-import routes from '../src/core/routers';
+import routes from './router/routers';
 
 const MOUNT_NODE = document.getElementById('root');
 
@@ -22,7 +22,7 @@ ReactDOM.render(
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  module.hot.accept('./src/routes', () => {
+  module.hot.accept('./src/core/routers', () => {
     /* eslint-disable global-require */
     const nextRoutes = require('./src/routes').default;
     ReactDOM.render(
