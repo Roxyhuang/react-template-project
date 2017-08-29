@@ -1,4 +1,4 @@
-// This is a react entry
+// This is a React entry
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 
 import store from '../src/core/store';
 import routes from './router/routers';
+import registerServiceWorker from './registerServiceWorker';
 
 const MOUNT_NODE = document.getElementById('root');
 
@@ -19,6 +20,8 @@ ReactDOM.render(
     </Provider>
   </AppContainer>, MOUNT_NODE,
 );
+
+registerServiceWorker();
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
