@@ -7,7 +7,7 @@ const autoprefixer = require('autoprefixer');
 
 const ROOT_PATH = path.resolve(__dirname, '../../');
 const APP_PATH = path.resolve(ROOT_PATH, 'src');
-const APP_FILE = path.resolve(APP_PATH, 'index.js');
+const APP_FILE = path.resolve(APP_PATH, 'main.jsx');
 const BUILD_PATH = path.resolve(ROOT_PATH, '/dist');
 
 
@@ -15,8 +15,8 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     app: [
-      'webpack-hot-middleware/client',
-      APP_FILE
+      'webpack-hot-middleware/client?reload=true',
+      APP_FILE,
     ],
     vendors: [
       'antd',
