@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from './components/Container';
+import Container from '../components/Container';
 import errorHandler from '../core/utils/errorHandler';
 import sty from './App.scss';
 

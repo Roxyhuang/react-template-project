@@ -7,8 +7,8 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
-import store from '../src/core/store';
-import routes from './router/routers';
+import store from './core/store';
+import routers from './router/routers';
 import registerServiceWorker from './registerServiceWorker';
 
 const MOUNT_NODE = document.getElementById('root');
@@ -16,7 +16,7 @@ const MOUNT_NODE = document.getElementById('root');
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
-      {routes}
+      {routers}
     </Provider>
   </AppContainer>, MOUNT_NODE,
 );
@@ -27,7 +27,7 @@ registerServiceWorker();
 if (module.hot) {
   module.hot.accept('./src/core/routers', () => {
     /* eslint-disable global-require */
-    const nextRoutes = require('./src/routes').default;
+    const nextRoutes = require('./router/routers').default;
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
