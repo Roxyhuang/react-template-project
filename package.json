@@ -110,7 +110,7 @@
     ]
   },
   "scripts": {
-    "dev": "node build/script/dev-server.js",
+    "dev": "babel-node build/script/dev-server.js",
     "check-version": "node build/script/check-versions.js"
   },
   "theme": "./theme/theme.js"

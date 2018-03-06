@@ -88,14 +88,14 @@ module.exports = {
         include: [APP_PATH]
       }]
   },
-  postcss: [autoprefixer],
+  // postcss: [autoprefixer],
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
     }),
-    new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
       filename: '/dist/index.html',
       template: 'public/index.html',
@@ -105,6 +105,6 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.less', '.scss', '.css'],
   }
 };
